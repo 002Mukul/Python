@@ -1,0 +1,15 @@
+import mysql.connector
+
+#!/usr/bin/python3
+import mysql.connector
+
+connect = mysql.connector.connect(host="localhost", user="root", password="redhat", database="mysql")
+print(connect)
+
+a = connect.cursor()
+a.execute("select * from user")
+
+result = a.fetchall()
+for i in result:
+	print(i)
+

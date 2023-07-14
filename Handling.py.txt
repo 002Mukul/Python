@@ -1,0 +1,11 @@
+#!/usr/bin/python3
+try:
+	f = open("file.txt", "w")
+	f.write("LOL")
+except IOError as pop:
+	print("Its IO Error, not able to write the file:", pop)
+except Exception as pop:
+	print("Another error but not IO Error", pop)
+else:
+	print("Task is done")
+	f.close()

@@ -1,0 +1,39 @@
+#!usr/bin/python3
+import re
+import requests
+import argparse
+import sys
+
+class Crawl:
+    def args_pass(self):
+        parser = argparse.ArgumentParser(description="TOOL")
+        parser.add_argument("-url", type=str, help="Type domain", required=True)
+        opts = parser.parse_args()
+        if not opts.url:
+            print("Please specify a url, use --help for more")
+        return opts
+
+    def get_links(self, url):
+        try:
+            if "http://" in url or "https://" in url:
+                r = requests.get(url, timeout=10)
+                return re.findall('(?:href=")(.*?)"', str(r.content))
+            else:
+                r = requests.get("http://" + url)
+                return re.findall('(?:href=")(.*?)"', str(r.content))
+        except Exception as err:
+            print("Error:", err)
+
+    def collect(self, url):
+        href = self.get_links(url)
+        if href:
+            print(href)
+            for links in href:
+                print(url+links)
+
+try:
+    run = Crawl()
+    opts = run.args_pass()
+    run.collect(opts.url)
+except KeyboardInterrupt:
+    print("Exit")

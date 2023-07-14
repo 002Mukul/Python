@@ -1,0 +1,16 @@
+#!/usr/bin/python3
+class details:
+	# __init__(self) call itself & intialise attributes
+	# name, role are arguments
+	def __init__(self, name, team):
+		self.name = name
+		self.team = team
+	# method named as run
+	def run(self):
+		print("Name:", self.name, "\nRole:", self.team, "\n")
+# call the method
+user1 = details('natasha', 'A')
+user2 = details('dheeraj', 'B')
+
+user1.run()
+user2.run()
